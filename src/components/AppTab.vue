@@ -104,12 +104,8 @@ const changeTab = (tab) => activeTab.value = tab
 
     > .tab-content {
 
-        align-items: center;
         background-color: #fff;
-        display: flex;
-        justify-content: center;
         max-height: 70vh;
-        min-height: 400px;
         overflow: auto;
 
         &.--points { margin-top: 1px }

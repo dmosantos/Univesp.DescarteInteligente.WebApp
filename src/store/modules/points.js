@@ -31,6 +31,18 @@ const actions = {
         const response = await axios.get('/')
         commit('setPoints', response.data.datahome)
 
+    },
+
+    insertNewPoint: async ({commit}, point) => {
+
+        await axios.post('/post', point)
+
+    },
+
+    deletePoint: async ({commit}, id) => {
+
+        await axios.delete(`/delete/${id}`, id)
+
     }
 
 }
