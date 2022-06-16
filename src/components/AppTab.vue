@@ -46,7 +46,7 @@ const changeTab = (tab) => activeTab.value = tab
 
 .app-tab {
 
-    margin: -10rem auto 3rem auto;
+    margin: -10rem auto 5rem auto;
     max-width: 900px;
 
     > .tabs {
@@ -67,7 +67,7 @@ const changeTab = (tab) => activeTab.value = tab
 
                 background-color: #fff;
                 border: 1px solid transparent;
-                color: #999;
+                color: #777;
                 display: block;
                 font-weight: 700;
                 text-align: center;
@@ -104,7 +104,10 @@ const changeTab = (tab) => activeTab.value = tab
 
     > .tab-content {
 
+        align-items: center;
         background-color: #fff;
+        display: flex;
+        justify-content: center;
         max-height: 70vh;
         min-height: 400px;
         overflow: auto;

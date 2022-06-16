@@ -27,7 +27,7 @@
 
 .new-point {
 
-    margin: 0 auto 3rem auto;
+    margin: 0 auto 5rem auto;
     max-width: 600px;
 
 }
@@ -50,7 +50,7 @@
 
 .field {
 
-    border: 1px solid #ccc;
+    border: 0 none;
     border-radius: 3px;
     padding: 1rem;
     margin-bottom: 1rem;

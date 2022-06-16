@@ -1,34 +1,58 @@
 <script setup>
 
+import { ref } from 'vue'
+import { useStore } from 'vuex'
 
+const store = useStore()
+
+let loading = ref(true)
+
+const getPoints = async () => {
+    
+    await store.dispatch('points/getPoints')
+    
+    loading.value = false
+}
+
+getPoints()
 
 </script>
 
 <template>
-    <ul class="list">
-        <li class="item" v-for="index in 20" :key="index">
-            <div>
-                <a class="show-in-map" href="javascript:void(0)">
-                    <Icon symbol="geo-alt-fill" />
-                </a>
-            </div>
-            <div class="details">
-                <p class="id">#{{ index }}</p>
-                <p class="name"><strong>Nome da Instituição</strong></p>
-                <p class="address">Rua Duque de Caxias, 110 - Itajubá - MG - CEP 37503-012</p>
-                <p class="phonenumber">
-                    <Icon symbol="telephone" /> (35) 3233-7513
-                </p>
-            </div>
-            <div class="buttons">
-                <Button label="Editar" icon="pencil" />
-                <Button label="Excluir" icon="dash-circle" color="danger" />
-            </div>
-        </li>
-    </ul>
+    <div class="points-list">
+        
+        <ul class="list" v-if="!loading">
+            <li class="item" v-for="(point, index) in store.getters['points/getAll']" :key="index">
+                <div>
+                    <a class="show-in-map" href="javascript:void(0)">
+                        <Icon symbol="geo-alt-fill" />
+                    </a>
+                </div>
+                <div class="details">
+                    <p class="id">#{{ point.id }}</p>
+                    <p class="name"><strong>{{ point.name }}</strong></p>
+                    <p class="address">{{ point.address }} - {{ point.cep }}</p>
+                    <p class="phonenumber">
+                        <Icon symbol="telephone" /> {{ point.phone }}
+                    </p>
+                </div>
+                <div class="buttons">
+                    <Button label="Editar" icon="pencil" />
+                    <Button label="Excluir" icon="dash-circle" color="danger" />
+                </div>
+            </li>
+        </ul>
+
+        <div class="loading" v-if="loading">
+            <Loading />
+        </div>
+
+    </div>
 </template>
 
 <style lang="scss" scoped>
+
+.points-list { flex-grow: 1 }
 
 .list {
 
