@@ -5,7 +5,7 @@
 </script>
 
 <template>
-    <footer class="app-footer">
+    <footer id="about" class="app-footer">
         <Container>
 
             Desenvolvido pela equipe do Projeto Integrador Univesp

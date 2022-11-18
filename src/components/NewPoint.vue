@@ -1,6 +1,7 @@
 <script setup>
 
 import { ref } from 'vue'
+import axios from 'axios'
 import { useStore } from 'vuex'
 import Point from '@/store/model/Point'
 
@@ -21,10 +22,41 @@ const insertNewPoint = async () => {
 
 }
 
+const loadingCep = ref(false)
+
+const loadCep = async () => {
+
+    if(!point.value.cep)
+        return
+    
+    loadingCep.value = true
+    point.value.address = 'Carregando...'
+
+    try {
+
+        const response = await axios.get(`https://viacep.com.br/ws/${point.value.cep.replace(/[^0-9]/g, '')}/json/`)
+        const cepData = response.data
+
+        if(!cepData.erro)
+            point.value.address = `${cepData.logradouro}, NÚMERO, ${cepData.bairro}, ${cepData.localidade} - ${cepData.uf}`
+
+        else
+            point.value.address = 'CEP não encontrado'
+
+    } catch (error) {
+        
+        point.value.address = 'CEP não encontrado'
+
+    }
+
+    loadingCep.value = false
+
+}
+
 </script>
 
 <template>
-    <form class="new-point" @submit.prevent="insertNewPoint">
+    <form id="new-point" class="new-point" @submit.prevent="insertNewPoint">
 
         <h2 class="title">Cadastrar novo ponto de coleta</h2>
 
@@ -32,7 +64,7 @@ const insertNewPoint = async () => {
         <input id="name" class="field" type="text" placeholder="Nome do ponto de coleta" required v-model="point.name" />
 
         <label for="cep" class="label">CEP:</label>
-        <input id="cep" class="field" type="text" placeholder="00000-000" required v-model="point.cep" />
+        <input id="cep" class="field" type="text" placeholder="00000-000" required v-model="point.cep" @blur="loadCep" maxlength="9" />
 
         <label for="address" class="label">Endereço:</label>
         <input id="address" class="field" type="text" placeholder="Endereço completo do ponto de coleta" required v-model="point.address" />
