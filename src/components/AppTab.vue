@@ -106,6 +106,7 @@ const changeTab = (tab) => activeTab.value = tab
 
         background-color: #fff;
         max-height: 70vh;
+        min-height: 500px;
         overflow: auto;
 
         &.--points { margin-top: 1px }

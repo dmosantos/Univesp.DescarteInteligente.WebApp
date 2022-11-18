@@ -15,6 +15,11 @@ import Loading from '@/components/Global/GlobalLoading.vue'
 createApp(App)
     .use(store)
     .use(router)
+    // .use(VueGoogleMaps, {
+    //     load: {
+    //         key: 'AIzaSyCjwIhOiGdaCZAMr1c0Wg64baYbbs8ZdK8',
+    //     },
+    // })
     .component('Icon', Icon)
     .component('Button', Button)
     .component('Container', Container)
