@@ -12,7 +12,7 @@ import AppMenu from './AppMenu.vue'
         <div class="content">
 
             <Icon class="icon" symbol="recycle" />
-            <h1 class="title">Descate de Óleo Inteligente</h1>
+            <h1 class="title">Descarte de Óleo Inteligente</h1>
             <p>Encontre um ponto de coleta de óleo próximo a você!</p>
 
         </div>
